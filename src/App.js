@@ -1,14 +1,21 @@
-// import logo from './logo.svg';
 import './App.css';
 import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Components/navbar"
 import {Todos} from "./Components/todos"
+import React, {useState} from 'react';
 // import {Todo} from "./Components/todo"
-import Footer from "./Components/footer"
+import {Footer} from "./Components/footer"
 
 function App() {
-  let todos=[
+  const onDelete= (todo) =>{
+    console.log("I am ironman of ", todo)
+    SetTodos(todos.filter((e)=>{
+      return e!==todo
+    }))
+
+  }
+  const[todos,SetTodos]=useState([
     {
     sno: 1,
     title: "Go to the market",
@@ -24,11 +31,11 @@ function App() {
     title: "Go to the mall",
     desc: "You need to go to the mall to get this job done"
     }, 
-  ]
+  ])
   return (
     <>
       <Header title="MyTodosList" searchbar={true}/>
-      <Todos todos={todos}/>
+      <Todos todos={todos} onDelete={onDelete}/>
       {/* <Todoitem/> */}
       <Footer/>
     </>
