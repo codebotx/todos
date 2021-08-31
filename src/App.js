@@ -4,7 +4,7 @@ import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Components/navbar"
 import {Todos} from "./Components/todos"
-import {Todo} from "./Components/todo"
+// import {Todo} from "./Components/todo"
 import Footer from "./Components/footer"
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     <>
       <Header title="MyTodosList" searchbar={true}/>
       <Todos todos={todos}/>
-      <Todo/>
+      {/* <Todoitem/> */}
       <Footer/>
     </>
   );
