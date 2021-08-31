@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Card, Button} from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 
 export const Footer = () => {
@@ -12,10 +12,10 @@ export const Footer = () => {
 
 	}
 	return (
-		<footer  style={footerStyle}>
-			<Card className="text-center bg-dark ">
+		<footer  className="text-center bg-dark " style={footerStyle}>
+			<p>
 				<Card.Footer className="text-muted">Copyright Anubhab Patnaik -@github.com/codebotx</Card.Footer>
-			</Card>
+			</p>
 		</footer>
 	)
 }
