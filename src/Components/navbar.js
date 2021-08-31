@@ -1,13 +1,15 @@
 import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, Nav, NavDropdown, Container, Button, FormControl, Form } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+
 
 export default function Header(props) {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">{props.title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -21,7 +23,7 @@ export default function Header(props) {
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Form className="d-flex">
+            {props.searchbar?<Form className="d-flex">
               <FormControl
                 type="search"
                 placeholder="Search"
@@ -29,10 +31,20 @@ export default function Header(props) {
                 aria-label="Search"
               />
               <Button variant="dark">Search</Button>
-            </Form>
+            </Form>:""}
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
   );
+}
+
+Header.defaultProps={
+  title:"Your title here",
+  // searchbar: true
+}
+
+Header.propTypes ={
+  title:PropTypes.string,
+  searchbar: PropTypes.bool.isRequired
 }
