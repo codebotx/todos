@@ -1,3 +1,7 @@
+# This website has been created to keep a track on the todos of the day
+
+A basic crud react project
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
