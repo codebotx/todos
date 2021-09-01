@@ -1,50 +1,42 @@
 import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Navbar, Nav, NavDropdown, Container, Button, FormControl, Form } from 'react-bootstrap'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 
 export default function Header(props) {
   return (
-    <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">{props.title}</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            {props.searchbar?<Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-auto"
-                aria-label="Search"
-              />
-              <Button variant="dark">Search</Button>
-            </Form>:""}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
-  );
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">{props.title}</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About</Link>
+            </li>
+          </ul>
+          {props.searchBar ? <form className="d-flex">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form> : ""}
+        </div>
+      </div>
+    </nav>
+  )
 }
 
-Header.defaultProps={
-  title:"Your title here",
+Header.defaultProps = {
+  title: "Your title here",
   // searchbar: true
 }
 
-Header.propTypes ={
-  title:PropTypes.string,
+Header.propTypes = {
+  title: PropTypes.string,
   searchbar: PropTypes.bool.isRequired
 }
