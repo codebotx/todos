@@ -1,58 +1,78 @@
 import './App.css';
-import 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "./Components/navbar"
-import { Todos } from "./Components/todos"
-import React, { useState } from 'react';
-// import {Todo} from "./Components/todo"
-import { Footer } from "./Components/footer"
-import { Addtodo } from './Components/addtodo'
+import Header from "./Components/navbar";
+import { Todos } from "./Components/todos";
+import { Footer } from "./Components/footer";
+import { Addtodo } from "./Components/addtodo";
+import { About } from "./Components/About";
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
+
+
   const onDelete = (todo) => {
-    console.log("I am ironman of ", todo)
-    SetTodos(todos.filter((e) => {
-      return e !== todo
-    }))
+    console.log("I am ondelete of todo", todo);
 
+    setTodos(todos.filter((e) => {
+      return e !== todo;
+    }));
+    console.log("deleted", todos)
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
+
   const addTodo = (title, desc) => {
-    console.log("I am todo",title, desc)
-    let sno=todos[todos.length-1].sno+1
-    const myTodo={
-      sno:sno,
-      title:title,
-      desc:desc,
+    console.log("I am adding this todo", title, desc)
+    let sno;
+    if (todos.length === 0) {
+      sno = 0;
     }
-    SetTodos([...todos,myTodo]);
-
+    else {
+      sno = todos[todos.length - 1].sno + 1;
+    }
+    const myTodo = {
+      sno: sno,
+      title: title,
+      desc: desc,
+    }
+    setTodos([...todos, myTodo]);
+    console.log(myTodo);
   }
 
+  const [todos, setTodos] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
 
-  const [todos, SetTodos] = useState([
-    {
-      sno: 1,
-      title: "Go to the market",
-      desc: "You need to go to the market to get this job done"
-    },
-    {
-      sno: 2,
-      title: "Go to the ghat",
-      desc: "You need to go to the ghat to get this job done"
-    },
-    {
-      sno: 3,
-      title: "Go to the mall",
-      desc: "You need to go to the mall to get this job done"
-    },
-  ])
-  return (
-    <>
-      <Header title="MyTodosList" searchbar={true} />
-      <Addtodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
-      {/* <Todoitem/> */}
+  return ( 
+    <> 
+    <Router>
+      <Header title="My Todos " searchBar={false} /> 
+      <Switch>
+          <Route exact path="/" render={()=>{
+            return(
+            <>
+            <Addtodo addTodo={addTodo} />
+            <Todos todos={todos} onDelete={onDelete} /> 
+            </>)
+          }}> 
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route> 
+        </Switch> 
       <Footer />
+    </Router>
     </>
   );
 }
