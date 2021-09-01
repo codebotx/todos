@@ -1,5 +1,5 @@
 import React from 'react'
-import { Todo } from './todo'
+import { Todoitem } from './todoitem'
 
 
 export const Todos = (props) => {
@@ -13,11 +13,10 @@ export const Todos = (props) => {
 			{props.todos.length === 0 ? <div className="text-center">
 				No Todos to display. You have succesfully completed all your tasks!</div>:
 				props.todos.map((todo) => {
-					console.log(todo.sno);
-					return(<Todo todo={todo} key={todo.sno} onDelete={props.onDelete} />)
+					console.log("agar blank todo araha hai to shayad yaha galti hai",todo.sno);
+					return(<Todoitem todo={todo} key={todo.sno} onDelete={props.onDelete} />)
 			})
 			}
 		</div>
 	)
 }
-

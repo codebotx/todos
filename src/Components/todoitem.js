@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Todo = ({ todo,onDelete }) => {
+export const Todoitem = ({ todo, onDelete }) => {
 	// console.log(todo)
 	return (
 		<>
