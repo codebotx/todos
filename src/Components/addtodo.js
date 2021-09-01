@@ -29,12 +29,12 @@ export const Addtodo = (props) => {
 			</h3>
 			<Form onSubmit={submit}>
 				<Form.Group className="mb-3" controlId="title">
-					<Form.Label>Todo Title</Form.Label>
+					<Form.Label>Task Todo </Form.Label>
 					<Form.Control type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} placeholder="Enter text here" />
 				</Form.Group>
 
 				<Form.Group className="mb-3" controlId="desc">
-					<Form.Label>Todo Description</Form.Label>
+					<Form.Label>Task Description</Form.Label>
 					<Form.Control type="text" value={desc} onChange={(e) => { setDesc(e.target.value) }} placeholder="Enter desc. here" />
 				</Form.Group>
 				<Button variant="primary" type="submit" className='btn btn-sm'>
